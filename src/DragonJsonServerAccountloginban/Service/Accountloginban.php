@@ -42,6 +42,7 @@ class Accountloginban
 					->setTarget($this)
 					->setAccountloginban($accountloginban)
 			);
+			$this->getServiceManager()->get('Session')->removeSessionsByAccountId($accountloginban->getAccountId());
 		});
 		return $accountloginban;
 	}
