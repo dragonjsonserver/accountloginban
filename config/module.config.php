@@ -11,11 +11,6 @@
  * @return array
  */
 return [
-	'dragonjsonserver' => [
-	    'apiclasses' => [
-	        '\DragonJsonServerAccountloginban\Api\Accountloginban' => 'Accountloginban',
-	    ],
-	],
 	'service_manager' => [
 		'invokables' => [
             'Accountloginban' => '\DragonJsonServerAccountloginban\Service\Accountloginban',
