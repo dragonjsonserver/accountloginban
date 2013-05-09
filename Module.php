@@ -57,5 +57,15 @@ class Module
 	    		throw new \DragonJsonServer\Exception('accountloginban', ['accountloginban' => $accountloginban->toArray()]);
 	    	}
     	);
+    	$sharedManager->attach('DragonJsonServerAccount\Service\Account', 'RemoveAccount', 
+	    	function (\DragonJsonServerAccount\Event\RemoveAccount $eventRemoveAccount) {
+	    		$serviceAccountloginban = $this->getServiceManager()->get('Accountloginban');
+	    		$accountloginban = $serviceAccountloginban->getAccountloginbanByAccountId($eventRemoveAccount->getAccount()->getAccountId(), false);
+	    		if (null === $accountloginban) {
+	    			return;
+	    		}
+	    		$serviceAccountloginban->removeAccountloginban($accountloginban);
+	    	}
+    	);
     }
 }
