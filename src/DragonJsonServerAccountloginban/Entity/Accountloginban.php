@@ -89,6 +89,7 @@ class Accountloginban
 	public function toArray()
 	{
 		return [
+			'entity' => 'Accountloginban',
 			'accountloginban_id' => $this->getAccountloginbanId(),
 			'created' => $this->getCreatedTimestamp(),
 			'account_id' => $this->getAccountId(),
