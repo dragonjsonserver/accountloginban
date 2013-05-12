@@ -32,6 +32,17 @@ class Accountloginban
 	protected $end;
 	
 	/**
+	 * Setzt die ID des Accountloginbanns
+	 * @param integer $accountloginban_id
+	 * @return Accountloginban
+	 */
+	protected function setAccountloginbanId($accountloginban_id)
+	{
+		$this->accountloginban_id = $accountloginban_id;
+		return $this;
+	}
+	
+	/**
 	 * Gibt die ID des Accountloginbanns zurück
 	 * @return integer
 	 */
@@ -43,6 +54,7 @@ class Accountloginban
 	/**
 	 * Setzt den Endzeitpunkt des Accountloginbanns
 	 * @param \DateTime $end
+	 * @return Accountloginban
 	 */
 	public function setEnd(\DateTime $end)
 	{
@@ -53,6 +65,7 @@ class Accountloginban
 	/**
 	 * Setzt den Endzeitpunkt des Accountloginbanns als Unix Timestamp
 	 * @param integer $end
+	 * @return Accountloginban
 	 */
 	public function setEndTimestamp($end)
 	{
@@ -83,13 +96,27 @@ class Accountloginban
 	}
 	
 	/**
+	 * Setzt die Attribute des Accountloginbanns aus dem Array
+	 * @param array $array
+	 * @return Accountloginban
+	 */
+	public function fromArray(array $array)
+	{
+		return $this
+			->setAccountloginbanId($array['accountloginban_id'])
+			->setCreatedTimestamp($array['created'])
+			->setAccountId($array['account_id'])
+			->setEndTimestamp($array['end']);
+	}
+	
+	/**
 	 * Gibt die Attribute des Accountloginbanns als Array zurück
 	 * @return array
 	 */
 	public function toArray()
 	{
 		return [
-			'entity' => 'Accountloginban',
+			'__className' => __CLASS__,
 			'accountloginban_id' => $this->getAccountloginbanId(),
 			'created' => $this->getCreatedTimestamp(),
 			'account_id' => $this->getAccountId(),
