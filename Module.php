@@ -49,7 +49,7 @@ class Module
     	$sharedManager = $moduleManager->getEventManager()->getSharedManager();
     	$sharedManager->attach('DragonJsonServerAccount\Service\Session', 'CreateSession', 
 	    	function (\DragonJsonServerAccount\Event\CreateSession $eventCreateSession) {
-	    		$serviceAccountloginban = $this->getServiceManager()->get('Accountloginban');
+	    		$serviceAccountloginban = $this->getServiceManager()->get('\DragonJsonServerAccountloginban\Service\Accountloginban');
 	    		$accountloginban = $serviceAccountloginban->getAccountloginbanByAccountId($eventCreateSession->getSession()->getAccountId(), false);
 	    		if (null === $accountloginban) {
 	    			return;
@@ -59,7 +59,7 @@ class Module
     	);
     	$sharedManager->attach('DragonJsonServerAccount\Service\Account', 'RemoveAccount', 
 	    	function (\DragonJsonServerAccount\Event\RemoveAccount $eventRemoveAccount) {
-	    		$serviceAccountloginban = $this->getServiceManager()->get('Accountloginban');
+	    		$serviceAccountloginban = $this->getServiceManager()->get('\DragonJsonServerAccountloginban\Service\Accountloginban');
 	    		$accountloginban = $serviceAccountloginban->getAccountloginbanByAccountId($eventRemoveAccount->getAccount()->getAccountId(), false);
 	    		if (null === $accountloginban) {
 	    			return;

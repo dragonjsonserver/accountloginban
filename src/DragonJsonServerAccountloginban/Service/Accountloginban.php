@@ -34,7 +34,7 @@ class Accountloginban
 		} else {
 			$accountloginban->setEnd($end);
 		}
-		$this->getServiceManager()->get('Doctrine')->transactional(function ($entityManager) use ($accountloginban) {
+		$this->getServiceManager()->get('\DragonJsonServerDoctrine\Service\Doctrine')->transactional(function ($entityManager) use ($accountloginban) {
 			$entityManager->persist($accountloginban);
 			$entityManager->flush();
 			$this->getEventManager()->trigger(
@@ -42,7 +42,7 @@ class Accountloginban
 					->setTarget($this)
 					->setAccountloginban($accountloginban)
 			);
-			$this->getServiceManager()->get('Session')->removeSessionsByAccountId($accountloginban->getAccountId());
+			$this->getServiceManager()->get('\DragonJsonServerAccount\Service\Session')->removeSessionsByAccountId($accountloginban->getAccountId());
 		});
 		return $accountloginban;
 	}
@@ -54,7 +54,7 @@ class Accountloginban
 	 */
 	public function removeAccountloginban(\DragonJsonServerAccountloginban\Entity\Accountloginban $accountloginban)
 	{
-		$this->getServiceManager()->get('Doctrine')->transactional(function ($entityManager) use ($accountloginban) {
+		$this->getServiceManager()->get('\DragonJsonServerDoctrine\Service\Doctrine')->transactional(function ($entityManager) use ($accountloginban) {
 			$this->getEventManager()->trigger(
 				(new \DragonJsonServerAccountloginban\Event\RemoveAccountloginban())
 					->setTarget($this)

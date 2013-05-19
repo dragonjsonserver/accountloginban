@@ -13,7 +13,7 @@
 return [
 	'service_manager' => [
 		'invokables' => [
-            'Accountloginban' => '\DragonJsonServerAccountloginban\Service\Accountloginban',
+            '\DragonJsonServerAccountloginban\Service\Accountloginban' => '\DragonJsonServerAccountloginban\Service\Accountloginban',
 		],
 	],
 	'doctrine' => [
